@@ -67,12 +67,23 @@ pretrained_models = {
 }
 
 
+def _get_pretrained_path(tag):
+    """
+    Download and returns pretrained resources path of current task.
+    """
+    assert tag in pretrained_models, 'Can not find pretrained resources of {}.'.format(tag)
+    res_path = os.path.join(MODEL_HOME, tag)
+    decompressed_path = download_and_decompress(pretrained_models[tag],
+                                                res_path)
+    decompressed_path = os.path.abspath(decompressed_path)
+    return decompressed_path
+
+
 class TTSExecutor():
     def __init__(self):
-
         # FastSpeech2
         model_tag = 'fastspeech2_csmsc-zh'
-        am_res_path = self._get_pretrained_path(model_tag)
+        am_res_path = _get_pretrained_path(model_tag)
         am_config = os.path.join(am_res_path, pretrained_models[model_tag]['config'])
         am_ckpt = os.path.join(am_res_path, pretrained_models[model_tag]['ckpt'])
         am_stat = os.path.join(am_res_path, pretrained_models[model_tag]['speech_stats'])
@@ -84,7 +95,7 @@ class TTSExecutor():
 
         # VOC
         voc_tag = "pwgan_csmsc-zh"
-        voc_res_path = self._get_pretrained_path(voc_tag)
+        voc_res_path = _get_pretrained_path(voc_tag)
         voc_config = os.path.join(voc_res_path, pretrained_models[voc_tag]['config'])
         voc_ckpt = os.path.join(voc_res_path, pretrained_models[voc_tag]['ckpt'])
         voc_stat = os.path.join(voc_res_path, pretrained_models[voc_tag]['speech_stats'])
@@ -133,17 +144,6 @@ class TTSExecutor():
 
         self.frontend = Frontend(phone_vocab_path=phones_dict, tone_vocab_path=None)
 
-    def _get_pretrained_path(self, tag):
-        """
-        Download and returns pretrained resources path of current task.
-        """
-        assert tag in pretrained_models, 'Can not find pretrained resources of {}.'.format(tag)
-        res_path = os.path.join(MODEL_HOME, tag)
-        decompressed_path = download_and_decompress(pretrained_models[tag],
-                                                    res_path)
-        decompressed_path = os.path.abspath(decompressed_path)
-        return decompressed_path
-
     def run(self, text, output):
         # 文本输入
         sentences = [str(text)]
@@ -153,6 +153,7 @@ class TTSExecutor():
             input_ids = self.frontend.get_input_ids(sentence, merge_sentences=False, get_tone_ids=False)
             phone_ids = input_ids["phone_ids"]
             flags = 0
+            wav_all = ''
             for part_phone_ids in phone_ids:
                 with paddle.no_grad():
                     mel = self.am_inference(
