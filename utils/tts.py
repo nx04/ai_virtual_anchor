@@ -18,6 +18,8 @@ from paddlespeech.s2t.utils.dynamic_import import dynamic_import
 from paddlespeech.t2s.frontend.zh_frontend import Frontend
 from paddlespeech.t2s.modules.normalizer import ZScore
 
+from config.config import MODEL_CONFIG
+
 model_alias = {
     # acoustic model
     "fastspeech2": "paddlespeech.t2s.models.fastspeech2:FastSpeech2",
@@ -66,7 +68,7 @@ pretrained_models = {
 
 
 class TTSExecutor():
-    def __init__(self, config):
+    def __init__(self):
 
         # FastSpeech2
         model_tag = 'fastspeech2_csmsc-zh'
@@ -92,8 +94,6 @@ class TTSExecutor():
             self.am_config = CfgNode(yaml.safe_load(f))
         with open(voc_config) as f:
             voc_config = CfgNode(yaml.safe_load(f))
-        with open(config) as f:
-            self.style_config = CfgNode(yaml.safe_load(f))
 
         with open(phones_dict, "r") as f:
             phn_id = [line.strip().split() for line in f.readlines()]
@@ -158,12 +158,12 @@ class TTSExecutor():
                     mel = self.am_inference(
                         part_phone_ids,
                         durations=None,
-                        durations_scale=1 / float(self.style_config['TTS']['SPEED']),
+                        durations_scale=1 / float(MODEL_CONFIG['tts']['speed']),
                         durations_bias=None,
                         pitch=None,
-                        pitch_scale=float(self.style_config['TTS']['PITCH']),
+                        pitch_scale=float(MODEL_CONFIG['tts']['pitch']),
                         pitch_bias=None,
-                        energy=float(self.style_config['TTS']['ENERGY']),
+                        energy=float(MODEL_CONFIG['tts']['energy']),
                         energy_scale=None,
                         energy_bias=None,
                     )
