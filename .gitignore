@@ -1,0 +1,5 @@
+.idea
+.idea/vcs.xml
+db.sqlite3
+venv*
+__pycache__
