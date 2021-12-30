@@ -18,7 +18,7 @@ def wav2lip(input_video, input_audio, output):
     return output
 
 
-def driver(source_image, driving_video, output_path):
+def run_predictor(source_image, driving_video, output_path):
     output, filename = os.path.split(output_path)
     first_order_predictor = FirstOrderPredictor(output=output,
                                                 filename=filename,

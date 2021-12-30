@@ -6,8 +6,8 @@
 """
 import os
 from config.config import MODEL_CONFIG
-from utils.tts import TTSExecutor
-from utils.gan import wav2lip
+from anchor_kit.tts import TTSExecutor
+from anchor_kit.gan import wav2lip
 
 if __name__ == '__main__':
     text = '今天的天气不错啊'
