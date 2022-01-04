@@ -11,9 +11,8 @@ from anchor_kit.gan import wav2lip
 
 if __name__ == '__main__':
     text = '今天的天气不错啊'
-    out_file = 'output.mp4'
     TTS = TTSExecutor()
-    wav_file = TTS.run(text=text, output=out_file)  # 合成音频
-    video = wav2lip(MODEL_CONFIG['driver']['output_video'], wav_file, out_file)  # 将音频合成到唇形视频
+    wav_file = TTS.run(text=text, output='output.wav')  # 合成音频
+    video = wav2lip(MODEL_CONFIG['driver']['output_video'], wav_file, 'output.mp4')  # 将音频合成到唇形视频
     os.remove(wav_file)  # 删除临时的音频文件
-    print('视频生成完毕，输出路径为：{}'.format(out_file))
+    print('视频生成完毕')
