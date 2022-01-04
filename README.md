@@ -16,11 +16,21 @@ tar zxvf nltk_data.tar.gz
 
 ## 资源消耗
 
+第1轮测试：
+
 - CPU: 28% (CPU: 4 Cores. RAM: 32GB. Disk: 100GB) 
 - 内存: 13% (4.3 GB/32.0 GB)
 - 硬盘: 1% (0.9 GB/100.0 GB) 
 - GPU: 81% (GPU: Tesla V100. Video Mem: 32GB) 
 - 显存: 86% (27.1 GB/31.7 GB)
+
+第2轮测试：
+
+CPU: 27% (CPU: 4 Cores. RAM: 32GB. Disk: 100GB) 
+内存: 11% (3.4 GB/32.0 GB)
+硬盘: 2% (1.7 GB/100.0 GB) 
+GPU: 100% (GPU: Tesla V100. Video Mem: 32GB) 
+显存: 85% (27.1 GB/31.7 GB)
 
 ## 安装问题
 ```
