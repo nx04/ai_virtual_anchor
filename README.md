@@ -8,6 +8,10 @@ pip3 install -r requirements.txt
 pip3 install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 pip3 install -r requirements.txt -i https://pypi.python.org/simple/
 pip3 install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
+
+
+wget https://paddlespeech.bj.bcebos.com/Parakeet/tools/nltk_data.tar.gz
+tar zxvf nltk_data.tar.gz
 ```
 
 ## 资源消耗
