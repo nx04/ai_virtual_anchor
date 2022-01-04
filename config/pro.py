@@ -15,7 +15,7 @@ HTTP_CONFIG = {
 MODEL_CONFIG = {
     "driver": {
       'input_image': './data/input/test.png',
-      'input_video': './data/input/zimeng.mp4',
+      'input_video': './data/input/test.mp4',
       'output_video': './data/input/test.mp4'
     },
     "tts": {
