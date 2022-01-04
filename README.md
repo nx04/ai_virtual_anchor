@@ -18,7 +18,7 @@ pip3 install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 - GPU: 0% 
 - 显存: 0%(0.0 GB/16.0 GB)
 
-
+## 安装问题
 ```
 Centos 7提示ImportError: /usr/lib64/libstdc++.so.6: version `CXXABI_1.3.8' not found错误的解决办法
 
