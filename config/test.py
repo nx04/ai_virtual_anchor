@@ -14,9 +14,9 @@ HTTP_CONFIG = {
 
 MODEL_CONFIG = {
     "driver": {
-      'input_image': './data/input/test.png',
-      'input_video': './data/input/test.mp4',
-      'output_video': './data/input/test.mp4'
+      'input_image': './data/input/template.png',
+      'input_video': './data/input/template.mp4',
+      'output_video': './data/input/template_merge.mp4'
     },
     "tts": {
       'speed': 1.0,
